@@ -36,7 +36,7 @@ namespace WindowsFormsApp1
         {
 
         }
-
+        #region Events
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -83,7 +83,7 @@ namespace WindowsFormsApp1
 
         private void searchAndReplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Form2(this).Show();
+            new SearchAndReplace(this).Show();
         }
 
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)
@@ -93,8 +93,16 @@ namespace WindowsFormsApp1
 
         private void fontToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            fontDialog1.ShowDialog();
-            richTextBox1.Font = fontDialog1.Font;
+            if (richTextBox1.SelectedText.Length == 0)
+            {
+                fontDialog1.ShowDialog();
+                richTextBox1.Font = fontDialog1.Font;
+            }
+            else
+            {
+                fontDialog1.ShowDialog();
+                richTextBox1.SelectionFont = fontDialog1.Font;
+            }
         }
 
         private void boldToolStripMenuItem_Click(object sender, EventArgs e)
@@ -186,6 +194,81 @@ namespace WindowsFormsApp1
             Process.Start(e.LinkText);
         }
 
+        private void newToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (richTextBox1.Text.Length > 1)
+            {
+                saveFileDialog1.ShowDialog();
+            }
 
+            richTextBox1.Text = "";
+        }
+
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.FileName = "";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    richTextBox1.LoadFile(openFileDialog1.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+            }
+        }
+
+        private void saveToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                richTextBox1.SaveFile(saveFileDialog1.FileName);
+            }
+        }
+
+        private void printToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (printDialog1.ShowDialog() == DialogResult.OK)
+                printDocument1.Print();
+        }
+
+        private void cutToolStripButton_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Cut();
+        }
+
+        private void copyToolStripButton_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Copy();
+        }
+
+        private void pasteToolStripButton_Click(object sender, EventArgs e)
+        {
+            DataFormats.Format format = DataFormats.GetFormat(DataFormats.Bitmap);
+
+            if (Clipboard.ContainsText(TextDataFormat.Rtf))
+            {
+                richTextBox1.Paste();
+            }
+            else if (Clipboard.ContainsText(TextDataFormat.Text))
+            {
+                richTextBox1.Paste();
+            }
+            else if (this.richTextBox1.CanPaste(format))
+            {
+                richTextBox1.Paste(format);
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Undo();
+        }
+
+        #endregion
     }
 }
