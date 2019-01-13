@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form1 : Form
+    public partial class Editor : Form
     {
-        public Form1()
+        public Editor()
         {
             InitializeComponent();
 
@@ -30,6 +30,11 @@ namespace WindowsFormsApp1
             toolStripStatusLabel2.BorderStyle = Border3DStyle.Sunken;
             toolStripStatusLabel2.Text = DateTime.Today.ToLongDateString();
             toolStripStatusLabel2.TextAlign = ContentAlignment.MiddleRight;
+        }
+
+        private void Editor_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -180,5 +185,7 @@ namespace WindowsFormsApp1
             //Open default browser and go to link in document
             Process.Start(e.LinkText);
         }
+
+
     }
 }

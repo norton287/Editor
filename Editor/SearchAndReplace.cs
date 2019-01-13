@@ -10,14 +10,20 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class Search : Form
+    public partial class Form2 : Form
     {
-        Form1 ths;
+        Editor ths;
 
-        public Search(Form1 frm)
+        public Form2(Editor frm)
         {
             InitializeComponent();
+
             ths = frm;
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -27,15 +33,12 @@ namespace WindowsFormsApp1
                 int start = ths.richTextBox1.Find(txtSearch.Text);
 
                 ths.richTextBox1.Select(start, txtSearch.Text.Length);
-
-                ths.richTextBox1.SelectionBackColor = Color.Yellow;
             }
-        }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            ths.richTextBox1.SelectionBackColor = Color.White;
+            if (txtReplace.Text != "")
+            {
+                ths.richTextBox1.Text = ths.richTextBox1.Text.Replace(txtSearch.Text, txtReplace.Text);
+            }
         }
     }
 }
