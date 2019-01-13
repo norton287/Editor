@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace RTFEditor
 {
     partial class SearchAndReplace
     {

@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace RTFEditor
 {
     partial class Search
     {
@@ -85,6 +85,7 @@
             this.Name = "Search";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Search";
+            this.Load += new System.EventHandler(this.Search_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

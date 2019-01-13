@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace RTFEditor
 {
     public partial class Search : Form
     {
@@ -36,6 +36,11 @@ namespace WindowsFormsApp1
         {
             this.Close();
             ths.richTextBox1.SelectionBackColor = Color.White;
+        }
+
+        private void Search_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

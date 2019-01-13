@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace RTFEditor
 {
     partial class Editor
     {
@@ -70,9 +70,9 @@
             this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -358,7 +358,7 @@
             this.helpToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1200, 30);
+            this.toolStrip1.Size = new System.Drawing.Size(1200, 27);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -437,6 +437,16 @@
             this.pasteToolStripButton.Text = "&Paste";
             this.pasteToolStripButton.Click += new System.EventHandler(this.pasteToolStripButton_Click);
             // 
+            // tsbUndo
+            // 
+            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbUndo.Image = global::RTFEditor.Properties.Resources.back_arrow;
+            this.tsbUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbUndo.Name = "tsbUndo";
+            this.tsbUndo.Size = new System.Drawing.Size(24, 24);
+            this.tsbUndo.Text = "Undo";
+            this.tsbUndo.Click += new System.EventHandler(this.tsbUndo_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -452,16 +462,6 @@
             this.helpToolStripButton.Size = new System.Drawing.Size(24, 27);
             this.helpToolStripButton.Text = "He&lp";
             // 
-            // tsbUndo
-            // 
-            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbUndo.Image = ((System.Drawing.Image)(resources.GetObject("tsbUndo.Image")));
-            this.tsbUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbUndo.Name = "tsbUndo";
-            this.tsbUndo.Size = new System.Drawing.Size(56, 27);
-            this.tsbUndo.Text = "Undo";
-            this.tsbUndo.Click += new System.EventHandler(this.tsbUndo_Click);
-            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -476,7 +476,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Editor";
-            this.Text = "Editor";
+            this.Text = "RTFEditor";
             this.Load += new System.EventHandler(this.Editor_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
