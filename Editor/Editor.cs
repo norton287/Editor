@@ -37,6 +37,7 @@ namespace WindowsFormsApp1
 
         }
         #region Events
+
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -181,7 +182,7 @@ namespace WindowsFormsApp1
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             //Look for words in the richtextbox
-            var words = richTextBox1.Text.Split(new char[] { ' ', ',', '.', '!', '\n' });
+            var words = richTextBox1.Text.Split(new char[] { ' ', ',', '.', '!', '\n', '?', ':', ';' });
             //Count words longer than or equal to one character
             var count = words.Count(word => word.Length >= 1);
             //Update the toolstripstatuslabel with the count
@@ -264,7 +265,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void tsbUndo_Click(object sender, EventArgs e)
         {
             richTextBox1.Undo();
         }
