@@ -35,7 +35,7 @@ namespace RTFEditor
 
         private void Editor_Load(object sender, EventArgs e)
         {
-
+                        
         }
         #region Events
 
@@ -109,74 +109,62 @@ namespace RTFEditor
 
         private void boldToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (richTextBox1.SelectionFont != null)
+            if (richTextBox1.SelectionFont == null)
             {
-                Font currentFont = richTextBox1.SelectionFont;
-                FontStyle newFontStyle;
-
-                if (richTextBox1.SelectionFont.Bold == true)
-                {
-                    newFontStyle = FontStyle.Regular;
-                }
-                else
-                {
-                    newFontStyle = FontStyle.Bold;
-                }
-
-                richTextBox1.SelectionFont = new Font(
-                   currentFont.FontFamily,
-                   currentFont.Size,
-                   newFontStyle
-                );
+                return;
             }
+
+            FontStyle style = richTextBox1.SelectionFont.Style;
+
+            if (richTextBox1.SelectionFont.Bold)
+            {
+                style &= ~FontStyle.Bold;
+            }
+            else
+            {
+                style |= FontStyle.Bold;
+
+            }
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
         }
 
         private void italicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (richTextBox1.SelectionFont != null)
+            if (richTextBox1.SelectionFont == null)
             {
-                Font currentFont = richTextBox1.SelectionFont;
-                FontStyle newFontStyle;
-
-                if (richTextBox1.SelectionFont.Italic == true)
-                {
-                    newFontStyle = FontStyle.Regular;
-                }
-                else
-                {
-                    newFontStyle = FontStyle.Italic;
-                }
-
-                richTextBox1.SelectionFont = new Font(
-                   currentFont.FontFamily,
-                   currentFont.Size,
-                   newFontStyle
-                );
+                return;
             }
+            FontStyle style = richTextBox1.SelectionFont.Style;
+
+            if (richTextBox1.SelectionFont.Italic)
+            {
+                style &= ~FontStyle.Italic;
+            }
+            else
+            {
+                style |= FontStyle.Italic;
+            }
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
         }
 
         private void underlineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (richTextBox1.SelectionFont != null)
+            if (richTextBox1.SelectionFont == null)
             {
-                Font currentFont = richTextBox1.SelectionFont;
-                FontStyle newFontStyle;
-
-                if (richTextBox1.SelectionFont.Underline == true)
-                {
-                    newFontStyle = FontStyle.Regular;
-                }
-                else
-                {
-                    newFontStyle = FontStyle.Underline;
-                }
-
-                richTextBox1.SelectionFont = new Font(
-                   currentFont.FontFamily,
-                   currentFont.Size,
-                   newFontStyle
-                );
+                return;
             }
+
+            FontStyle style = richTextBox1.SelectionFont.Style;
+
+            if (richTextBox1.SelectionFont.Underline)
+            {
+                style &= ~FontStyle.Underline;
+            }
+            else
+            {
+                style |= FontStyle.Underline;
+            }
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
         }
 
         //Show a word count in the status bar
@@ -250,8 +238,6 @@ namespace RTFEditor
 
         private void pasteToolStripButton_Click(object sender, EventArgs e)
         {
-            DataFormats.Format format = DataFormats.GetFormat(DataFormats.Bitmap);
-
             if (Clipboard.ContainsText(TextDataFormat.Rtf))
             {
                 richTextBox1.Paste();
@@ -260,10 +246,6 @@ namespace RTFEditor
             {
                 richTextBox1.Paste();
             }
-            else if (this.richTextBox1.CanPaste(format))
-            {
-                richTextBox1.Paste(format);
-            }
         }
 
         private void tsbUndo_Click(object sender, EventArgs e)
@@ -271,6 +253,31 @@ namespace RTFEditor
             richTextBox1.Undo();
         }
 
+        private void tsbInsertImage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog open = new OpenFileDialog();
+                open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                if (open.ShowDialog() == DialogResult.OK)
+                {
+                    Image img = Image.FromFile(open.FileName);
+                    Clipboard.SetImage(img);
+
+                    richTextBox1.SelectionStart = 0;
+                    richTextBox1.Paste();
+
+                    Clipboard.Clear();
+
+                }
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Failed loading image");
+            }
+        }
+
         #endregion
+
     }
 }
