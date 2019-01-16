@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RTFEditor
@@ -21,6 +16,10 @@ namespace RTFEditor
         {
             InitializeComponent();
 
+        }
+
+        private void Editor_Load(object sender, EventArgs e)
+        {
             //Settings for toolStripStatusLabel
             toolStripStatusLabel1.BorderSides = ((ToolStripStatusLabelBorderSides)((((ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top)
             | ToolStripStatusLabelBorderSides.Right)
@@ -34,17 +33,13 @@ namespace RTFEditor
             toolStripStatusLabel2.BorderStyle = Border3DStyle.Sunken;
             toolStripStatusLabel2.Text = DateTime.Today.ToLongDateString();
             toolStripStatusLabel2.TextAlign = ContentAlignment.MiddleRight;
-        }
 
-        private void Editor_Load(object sender, EventArgs e)
-        {
             SupportMethods support = new SupportMethods(this);
-
-            string exePath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);  
             
+            //Check for settings.xml in App Data folder
             if (File.Exists(workingDirectory + fileName))
             {
-                support.LoadSettings();
+                support.LoadSettings(); //load saved settings from xml
             }
         }
         #region Events

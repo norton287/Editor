@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RTFEditor
 {
-    public class WindowSettings : IWindowSettings
+    public class WindowSettings
     {
         public string fontFamily { get; set; }
         public float fontSize { get; set; }

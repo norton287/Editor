@@ -86,7 +86,6 @@
     <Compile Include="Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
-    <Compile Include="IWindowSettings.cs" />
     <Compile Include="SearchAndReplace.cs">
       <SubType>Form</SubType>
     </Compile>
