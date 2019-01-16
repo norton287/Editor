@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RTFEditor
-
 {
     public partial class Editor : Form
     {
@@ -35,7 +34,7 @@ namespace RTFEditor
 
         private void Editor_Load(object sender, EventArgs e)
         {
-                        
+            string exePath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);           
         }
         #region Events
 
@@ -277,6 +276,11 @@ namespace RTFEditor
             }
         }
 
+        private void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //new SettingsPanel(this).Show();
+            new SupportMethods().BuildSettings();
+        }
         #endregion
 
     }
