@@ -291,5 +291,12 @@ namespace RTFEditor
         }
         #endregion
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SupportMethods support = new SupportMethods();
+            //Save settings to settings.xml before exit
+            support.SaveSettings();
+            this.Close();
+        }
     }
 }

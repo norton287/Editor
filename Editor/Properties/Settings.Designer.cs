@@ -25,25 +25,25 @@ namespace RTFEditor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Arial Narrow, 13.8pt")]
-        public global::System.Drawing.Font Setting {
+        [global::System.Configuration.DefaultSettingValueAttribute("RTFEditor")]
+        public string FormName {
             get {
-                return ((global::System.Drawing.Font)(this["Setting"]));
+                return ((string)(this["FormName"]));
             }
             set {
-                this["Setting"] = value;
+                this["FormName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("75, 75")]
-        public global::System.Drawing.Point Setting1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 700")]
+        public global::System.Drawing.Size Size {
             get {
-                return ((global::System.Drawing.Point)(this["Setting1"]));
+                return ((global::System.Drawing.Size)(this["Size"]));
             }
             set {
-                this["Setting1"] = value;
+                this["Size"] = value;
             }
         }
     }

@@ -76,9 +76,8 @@ namespace RTFEditor
             foreach (var setting in WindowSettings)
             {
                 ths.richTextBox1.Font = new System.Drawing.Font(setting.fontFamily, setting.fontSize);
-                MessageBox.Show($"{ths.richTextBox1.Font}");
                 ths.Location = new System.Drawing.Point(setting.windowX, setting.windowY);
-                ths.Size = new Size(setting.windowWidth, setting.windowWidth);
+                ths.Size = new Size(setting.windowWidth, setting.windowHeight);
             }
         }
 
