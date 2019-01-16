@@ -22,5 +22,29 @@ namespace RTFEditor.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Arial Narrow, 13.8pt")]
+        public global::System.Drawing.Font Setting {
+            get {
+                return ((global::System.Drawing.Font)(this["Setting"]));
+            }
+            set {
+                this["Setting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("75, 75")]
+        public global::System.Drawing.Point Setting1 {
+            get {
+                return ((global::System.Drawing.Point)(this["Setting1"]));
+            }
+            set {
+                this["Setting1"] = value;
+            }
+        }
     }
 }
