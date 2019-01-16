@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,9 @@ namespace RTFEditor
 {
     public partial class Editor : Form
     {
+        private string workingDirectory = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+        private string fileName = @"\settings.xml";
+
         public Editor()
         {
             InitializeComponent();
@@ -34,7 +38,14 @@ namespace RTFEditor
 
         private void Editor_Load(object sender, EventArgs e)
         {
-            string exePath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);           
+            SupportMethods support = new SupportMethods(this);
+
+            string exePath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);  
+            
+            if (File.Exists(workingDirectory + fileName))
+            {
+                support.LoadSettings();
+            }
         }
         #region Events
 
@@ -279,7 +290,9 @@ namespace RTFEditor
         private void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //new SettingsPanel(this).Show();
-            new SupportMethods().BuildSettings();
+            SupportMethods support = new SupportMethods();
+
+            support.SaveSettings();
         }
         #endregion
 
