@@ -9,7 +9,7 @@ namespace RTFEditor
 {
     public partial class Editor : Form
     {
-        private string workingDirectory = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+        private string workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
         private string fileName = @"\settings.xml";
 
         public Editor()

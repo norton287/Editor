@@ -9,9 +9,12 @@ namespace RTFEditor
 {
     public class SupportMethods
     {
-        #region Properties
-        public string workingDirectory = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
-        public string fileName = @"\settings.xml";
+        #region Fields
+        private string workingDirectory = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
+        private string programPath = Environment.GetFolderPath(System.Environment.SpecialFolder.CommonProgramFilesX86) + @"\RTFEditor";
+        private string fileName = @"\settings.xml";
+        #endregion
+        #region Objects
         //Create Editor object on open instance of it
         Editor ths = (Editor)Application.OpenForms["Editor"];
         #endregion
@@ -47,6 +50,9 @@ namespace RTFEditor
 
         public void SaveSettings()
         {
+            if (!Directory.Exists(workingDirectory))
+                Directory.CreateDirectory(workingDirectory);
+            //Clear the WindowSettings list and rebuild it
             WindowSettings.Clear();
             BuildSettings(); //Get the form window settings and apply add them to the List
             // opening serializer on the List<WindowsSettings> object 
@@ -75,10 +81,12 @@ namespace RTFEditor
             //Set window attributes from List
             foreach (var setting in WindowSettings)
             {
-                ths.richTextBox1.Font = new System.Drawing.Font(setting.fontFamily, setting.fontSize);
-                ths.Location = new System.Drawing.Point(setting.windowX, setting.windowY);
+                ths.richTextBox1.Font = new Font(setting.fontFamily, setting.fontSize);
+                ths.Location = new Point(setting.windowX, setting.windowY);
                 ths.Size = new Size(setting.windowWidth, setting.windowHeight);
             }
+
+            myFileStream.Close();
         }
 
         public IEnumerable<WindowSettings> GetList()

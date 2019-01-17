@@ -34,5 +34,17 @@ namespace RTFEditor.Properties {
                 this["FormName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Arial, 13.8pt")]
+        public global::System.Drawing.Font Setting {
+            get {
+                return ((global::System.Drawing.Font)(this["Setting"]));
+            }
+            set {
+                this["Setting"] = value;
+            }
+        }
     }
 }

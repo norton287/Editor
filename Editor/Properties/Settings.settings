@@ -5,5 +5,8 @@
     <Setting Name="FormName" Type="System.String" Scope="User">
       <Value Profile="(Default)">RTFEditor</Value>
     </Setting>
+    <Setting Name="Setting" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Arial, 13.8pt</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
