@@ -34,13 +34,12 @@ namespace RTFEditor
             toolStripStatusLabel2.Text = DateTime.Today.ToLongDateString();
             toolStripStatusLabel2.TextAlign = ContentAlignment.MiddleRight;
 
+            //Create an new SupportMethods object
             SupportMethods support = new SupportMethods(this);
             
             //Check for settings.xml in App Data folder
             if (File.Exists(workingDirectory + fileName))
-            {
                 support.LoadSettings(); //load saved settings from xml
-            }
         }
         #region Events
 

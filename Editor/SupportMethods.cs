@@ -10,8 +10,8 @@ namespace RTFEditor
     public class SupportMethods
     {
         #region Fields
-        private string workingDirectory = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
-        private string programPath = Environment.GetFolderPath(System.Environment.SpecialFolder.CommonProgramFilesX86) + @"\RTFEditor";
+        private string workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
+        private string programPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFilesX86) + @"\RTFEditor";
         private string fileName = @"\settings.xml";
         #endregion
         #region Objects
