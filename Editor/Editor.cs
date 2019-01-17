@@ -282,15 +282,6 @@ namespace RTFEditor
             }
         }
 
-        private void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //new SettingsPanel(this).Show();
-            SupportMethods support = new SupportMethods();
-
-            support.SaveSettings();
-        }
-        #endregion
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SupportMethods support = new SupportMethods();
@@ -298,5 +289,13 @@ namespace RTFEditor
             support.SaveSettings();
             this.Close();
         }
+
+        private void Editor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SupportMethods support = new SupportMethods();
+            //Save settings to settings.xml before exit
+            support.SaveSettings();
+        }
+        #endregion
     }
 }

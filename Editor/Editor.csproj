@@ -23,14 +23,17 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>RTFEditor</ProductName>
+    <PublisherName>John Norton</PublisherName>
     <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
@@ -100,12 +103,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SettingsPanel.Designer.cs">
-      <DependentUpon>SettingsPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="SupportMethods.cs" />
     <Compile Include="WindowSettings.cs" />
     <EmbeddedResource Include="Editor.resx">
@@ -127,9 +124,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SettingsPanel.resx">
-      <DependentUpon>SettingsPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Editor_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
