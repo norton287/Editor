@@ -9,8 +9,8 @@ namespace RTFEditor
 {
     public partial class Editor : Form
     {
-        private string workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
-        private string fileName = @"\settings.xml";
+        private readonly string _workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
+        private readonly string _fileName = @"\settings.xml";
 
         public Editor()
         {
@@ -35,10 +35,10 @@ namespace RTFEditor
             toolStripStatusLabel2.TextAlign = ContentAlignment.MiddleRight;
 
             //Create an new SupportMethods object
-            SupportMethods support = new SupportMethods(this);
+            var support = new SupportMethods(this);
             
             //Check for settings.xml in App Data folder
-            if (File.Exists(workingDirectory + fileName))
+            if (File.Exists(_workingDirectory + _fileName))
                 support.LoadSettings(); //load saved settings from xml
         }
         #region Events
@@ -102,11 +102,19 @@ namespace RTFEditor
             if (richTextBox1.SelectedText.Length == 0)
             {
                 fontDialog1.ShowDialog();
+
+                if (fontDialog1.ShowDialog() == DialogResult.Cancel)
+                    return;
+
                 richTextBox1.Font = fontDialog1.Font;
             }
             else
             {
                 fontDialog1.ShowDialog();
+
+                if (fontDialog1.ShowDialog() == DialogResult.Cancel)
+                    return;
+
                 richTextBox1.SelectionFont = fontDialog1.Font;
             }
         }
@@ -118,7 +126,7 @@ namespace RTFEditor
                 return;
             }
 
-            FontStyle style = richTextBox1.SelectionFont.Style;
+            var style = richTextBox1.SelectionFont.Style;
 
             if (richTextBox1.SelectionFont.Bold)
             {
@@ -138,7 +146,7 @@ namespace RTFEditor
             {
                 return;
             }
-            FontStyle style = richTextBox1.SelectionFont.Style;
+            var style = richTextBox1.SelectionFont.Style;
 
             if (richTextBox1.SelectionFont.Italic)
             {
@@ -158,7 +166,7 @@ namespace RTFEditor
                 return;
             }
 
-            FontStyle style = richTextBox1.SelectionFont.Style;
+            var style = richTextBox1.SelectionFont.Style;
 
             if (richTextBox1.SelectionFont.Underline)
             {
@@ -179,7 +187,7 @@ namespace RTFEditor
             //Count words longer than or equal to one character
             var count = words.Count(word => word.Length >= 1);
             //Update the toolstripstatuslabel with the count
-            toolStripStatusLabel1.Text = $"Number of words: { count }";
+            toolStripStatusLabel1.Text = $@"Number of words: { count }";
         }
         //Capture Link clicks in the richTextBox1 object
         private void richTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)
@@ -193,6 +201,9 @@ namespace RTFEditor
             if (richTextBox1.Text.Length > 1)
             {
                 saveFileDialog1.ShowDialog();
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                    return;
             }
 
             richTextBox1.Text = "";
@@ -221,6 +232,10 @@ namespace RTFEditor
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 richTextBox1.SaveFile(saveFileDialog1.FileName);
+            }
+            else
+            {
+                return;
             }
         }
 
@@ -261,11 +276,13 @@ namespace RTFEditor
         {
             try
             {
-                OpenFileDialog open = new OpenFileDialog();
-                open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                var open = new OpenFileDialog
+                {
+                    Filter = @"Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp"
+                };
                 if (open.ShowDialog() == DialogResult.OK)
                 {
-                    Image img = Image.FromFile(open.FileName);
+                    var img = Image.FromFile(open.FileName);
                     Clipboard.SetImage(img);
 
                     richTextBox1.SelectionStart = 0;
@@ -283,7 +300,19 @@ namespace RTFEditor
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SupportMethods support = new SupportMethods();
+            if (richTextBox1.Text.Length > 1)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    richTextBox1.SaveFile(saveFileDialog1.FileName);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            var support = new SupportMethods();
             //Save settings to settings.xml before exit
             support.SaveSettings();
             this.Close();
@@ -291,7 +320,19 @@ namespace RTFEditor
 
         private void Editor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SupportMethods support = new SupportMethods();
+            if (richTextBox1.Text.Length > 1)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    richTextBox1.SaveFile(saveFileDialog1.FileName);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            var support = new SupportMethods();
             //Save settings to settings.xml before exit
             support.SaveSettings();
         }

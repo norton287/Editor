@@ -10,88 +10,85 @@ namespace RTFEditor
     public class SupportMethods
     {
         #region Fields
-        private string workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
-        private string programPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFilesX86) + @"\RTFEditor";
-        private string fileName = @"\settings.xml";
+        private readonly string _workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
+        private readonly string _programPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFilesX86) + @"\RTFEditor";
+        private readonly string _fileName = @"\settings.xml";
         #endregion
         #region Objects
         //Create Editor object on open instance of it
-        Editor ths = (Editor)Application.OpenForms["Editor"];
+        private readonly Editor _ths = (Editor)Application.OpenForms["Editor"];
         #endregion
         #region Collections
-        public List<WindowSettings> WindowSettings = new List<WindowSettings>();
+        private WindowSettings _windowSettings = new WindowSettings();
         #endregion
-        #region Methods
+        #region Constructors
         public SupportMethods(Editor frm)
         {
-            this.ths = frm;
+            this._ths = frm;
         }
 
         public SupportMethods()
         {
         }
+        #endregion
 
-        public void BuildSettings()
+        #region Methods
+        private void BuildSettings()
         {
-            WindowSettings = new List<WindowSettings>();
+            _windowSettings._fontFamily = _ths.richTextBox1.Font.FontFamily.Name;
+            _windowSettings._fontSize = _ths.richTextBox1.Font.Size;
+            _windowSettings._graphicsUnit = _ths.richTextBox1.Font.Unit;
+            _windowSettings._style = _ths.richTextBox1.Font.Style;
+            _windowSettings._windowX = _ths.Location.X;
+            _windowSettings._windowY = _ths.Location.Y;
+            _windowSettings._windowHeight = _ths.Height;
+            _windowSettings._windowWidth = _ths.Width;
 
-            WindowSettings.Add(new WindowSettings
-            {
-                fontFamily = ths.richTextBox1.Font.FontFamily.Name,
-                fontSize = ths.richTextBox1.Font.Size,
-                GraphicsUnit = ths.richTextBox1.Font.Unit,
-                Style = ths.richTextBox1.Font.Style,
-                windowX = ths.Location.X,
-                windowY = ths.Location.Y,
-                windowHeight = ths.Height,
-                windowWidth = ths.Width
-            });
         }
 
         public void SaveSettings()
         {
-            if (!Directory.Exists(workingDirectory))
-                Directory.CreateDirectory(workingDirectory);
-            //Clear the WindowSettings list and rebuild it
-            WindowSettings.Clear();
+            if (!Directory.Exists(_workingDirectory))
+                Directory.CreateDirectory(_workingDirectory);
+
             BuildSettings(); //Get the form window settings and apply add them to the List
-            // opening serializer on the List<WindowsSettings> object 
+            // opening serializer on the WindowSettings object 
             XmlSerializer mySerializer = new
-            XmlSerializer(typeof(List<WindowSettings>));
+            XmlSerializer(typeof(WindowSettings));
             // Create a StreamWriter object and output to settings.xml in app data folder  
-            StreamWriter myWriter = new StreamWriter(workingDirectory + fileName);
+            StreamWriter myWriter = new StreamWriter(_workingDirectory + _fileName);
             //Serialize settings to settings.xml
-            mySerializer.Serialize(myWriter, WindowSettings);
+            mySerializer.Serialize(myWriter, _windowSettings);
             //Close settings.xml
             myWriter.Close();
         }
 
         public void LoadSettings()
         {
-            // New instance of xmlserializer on the List<WindowSettings> object
+            // New instance of xml serializer on the WindowSettings object
             XmlSerializer mySerializer =
-            new XmlSerializer(typeof(List<WindowSettings>));
+            new XmlSerializer(typeof(WindowSettings));
             // New FileStream to open and read settings.xml
             FileStream myFileStream =
-            new FileStream(workingDirectory + fileName, FileMode.Open);
-            // Call the Deserialize method and cast to the object type List<WindowSettings>  
-            WindowSettings = (List<WindowSettings>)
+            new FileStream(_workingDirectory + _fileName, FileMode.Open);
+            // Call the Deserialize method and cast to the object type WindowSettings 
+            _windowSettings = (WindowSettings)
             mySerializer.Deserialize(myFileStream);
-
-            //Set window attributes from List
-            foreach (var setting in WindowSettings)
+            //Apply settings read to the Form Controls
+            if (_ths != null)
             {
-                ths.richTextBox1.Font = new Font(setting.fontFamily, setting.fontSize);
-                ths.Location = new Point(setting.windowX, setting.windowY);
-                ths.Size = new Size(setting.windowWidth, setting.windowHeight);
+                _ths.richTextBox1.Font = new Font(_windowSettings._fontFamily, _windowSettings._fontSize, _windowSettings._style, _windowSettings._graphicsUnit);
+                _ths.Location = new Point(_windowSettings._windowX, _windowSettings._windowY);
+                _ths.Size = new Size(_windowSettings._windowWidth, _windowSettings._windowHeight);
             }
 
+            //Close the settings.xml file
             myFileStream.Close();
         }
 
-        public IEnumerable<WindowSettings> GetList()
+        public WindowSettings GetList()
         {
-            return WindowSettings;
+            return _windowSettings;
         }
         #endregion
  
