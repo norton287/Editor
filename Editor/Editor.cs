@@ -101,21 +101,17 @@ namespace RTFEditor
         {
             if (richTextBox1.SelectedText.Length == 0)
             {
-                fontDialog1.ShowDialog();
-
                 if (fontDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
-
-                richTextBox1.Font = fontDialog1.Font;
+                else
+                    richTextBox1.Font = fontDialog1.Font;
             }
             else
             {
-                fontDialog1.ShowDialog();
-
                 if (fontDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
-
-                richTextBox1.SelectionFont = fontDialog1.Font;
+                else
+                    richTextBox1.SelectionFont = fontDialog1.Font;
             }
         }
 
@@ -200,8 +196,6 @@ namespace RTFEditor
         {
             if (richTextBox1.Text.Length > 1)
             {
-                saveFileDialog1.ShowDialog();
-
                 if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
             }
@@ -280,17 +274,14 @@ namespace RTFEditor
                 {
                     Filter = @"Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp"
                 };
-                if (open.ShowDialog() == DialogResult.OK)
-                {
-                    var img = Image.FromFile(open.FileName);
-                    Clipboard.SetImage(img);
+                if (open.ShowDialog() != DialogResult.OK) return;
+                var img = Image.FromFile(open.FileName);
+                Clipboard.SetImage(img);
 
-                    richTextBox1.SelectionStart = 0;
-                    richTextBox1.Paste();
+                richTextBox1.SelectionStart = 0;
+                richTextBox1.Paste();
 
-                    Clipboard.Clear();
-
-                }
+                Clipboard.Clear();
             }
             catch (Exception)
             {
@@ -315,7 +306,7 @@ namespace RTFEditor
             var support = new SupportMethods();
             //Save settings to settings.xml before exit
             support.SaveSettings();
-            this.Close();
+            Close();
         }
 
         private void Editor_FormClosing(object sender, FormClosingEventArgs e)
