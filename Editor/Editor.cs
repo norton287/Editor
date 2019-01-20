@@ -21,15 +21,15 @@ namespace RTFEditor
         private void Editor_Load(object sender, EventArgs e)
         {
             //Settings for toolStripStatusLabel
-            toolStripStatusLabel1.BorderSides = ((ToolStripStatusLabelBorderSides)((((ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top)
+            toolStripStatusLabel1.BorderSides = (((ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top)
             | ToolStripStatusLabelBorderSides.Right)
-            | ToolStripStatusLabelBorderSides.Bottom)));
+            | ToolStripStatusLabelBorderSides.Bottom);
             toolStripStatusLabel1.BorderStyle = Border3DStyle.Sunken;
             toolStripStatusLabel1.Text = "";
             toolStripStatusLabel1.TextAlign = ContentAlignment.MiddleLeft;
-            toolStripStatusLabel2.BorderSides = ((ToolStripStatusLabelBorderSides)((((ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top)
+            toolStripStatusLabel2.BorderSides = (((ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Top)
             | ToolStripStatusLabelBorderSides.Right)
-            | ToolStripStatusLabelBorderSides.Bottom)));
+            | ToolStripStatusLabelBorderSides.Bottom);
             toolStripStatusLabel2.BorderStyle = Border3DStyle.Sunken;
             toolStripStatusLabel2.Text = DateTime.Today.ToLongDateString();
             toolStripStatusLabel2.TextAlign = ContentAlignment.MiddleRight;

@@ -48,8 +48,12 @@ namespace RTFEditor
 
         public void SaveSettings()
         {
+            //Create settings.xml folder in AppData/RTFEditor
             if (!Directory.Exists(_workingDirectory))
                 Directory.CreateDirectory(_workingDirectory);
+
+            //Temporary to remove settings.xml when changes are made.
+            File.Delete(_workingDirectory + _fileName);
 
             BuildSettings(); //Get the form window settings and apply add them to the List
             // opening serializer on the WindowSettings object 
