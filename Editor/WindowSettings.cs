@@ -9,6 +9,8 @@ namespace RTFEditor
 {
     public class WindowSettings
     {
+        public string _fontDialogColor { get; set; }
+        public string _foreColor { get; set; }
         public string _fontFamily { get; set; }
         public float _fontSize { get; set; }
         public GraphicsUnit _graphicsUnit { get; set; }

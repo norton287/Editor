@@ -97,6 +97,7 @@
             // fontDialog1
             // 
             this.fontDialog1.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fontDialog1.ShowApply = true;
             this.fontDialog1.ShowColor = true;
             // 
             // printDialog1
@@ -530,7 +531,6 @@
         #endregion
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
@@ -576,6 +576,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        public System.Windows.Forms.FontDialog fontDialog1;
     }
 }
 

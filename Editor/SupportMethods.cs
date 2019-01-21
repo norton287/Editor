@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Configuration;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -35,6 +36,8 @@ namespace RTFEditor
         #region Methods
         private void BuildSettings()
         {
+            _windowSettings._fontDialogColor = _ths.richTextBox1.ForeColor.Name;
+            _windowSettings._foreColor = _ths.richTextBox1.ForeColor.Name;
             _windowSettings._fontFamily = _ths.richTextBox1.Font.FontFamily.Name;
             _windowSettings._fontSize = _ths.richTextBox1.Font.Size;
             _windowSettings._graphicsUnit = _ths.richTextBox1.Font.Unit;
@@ -81,6 +84,8 @@ namespace RTFEditor
             //Apply settings read to the Form Controls
             if (_ths != null)
             {
+                _ths.fontDialog1.Color = Color.FromName(_windowSettings._fontDialogColor);
+                _ths.richTextBox1.ForeColor = Color.FromName(_windowSettings._foreColor); 
                 _ths.richTextBox1.Font = new Font(_windowSettings._fontFamily, _windowSettings._fontSize, _windowSettings._style, _windowSettings._graphicsUnit);
                 _ths.Location = new Point(_windowSettings._windowX, _windowSettings._windowY);
                 _ths.Size = new Size(_windowSettings._windowWidth, _windowSettings._windowHeight);

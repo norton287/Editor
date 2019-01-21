@@ -104,14 +104,20 @@ namespace RTFEditor
                 if (fontDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
                 else
+                {
                     richTextBox1.Font = fontDialog1.Font;
+                    richTextBox1.ForeColor = fontDialog1.Color;
+                }
             }
             else
             {
                 if (fontDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
                 else
+                {
                     richTextBox1.SelectionFont = fontDialog1.Font;
+                    richTextBox1.ForeColor = fontDialog1.Color;
+                }
             }
         }
 
@@ -291,22 +297,28 @@ namespace RTFEditor
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (richTextBox1.Text.Length > 1)
-            {
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    richTextBox1.SaveFile(saveFileDialog1.FileName);
-                }
-                else
-                {
-                    return;
-                }
-            }
+            //if (richTextBox1.Text.Length > 1)
+            //{
+            //    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            //    {
+            //        richTextBox1.SaveFile(saveFileDialog1.FileName);
+            //        var support = new SupportMethods();
+            //        //Save settings to settings.xml before exit
+            //        support.SaveSettings();
+            //        Close();
 
-            var support = new SupportMethods();
-            //Save settings to settings.xml before exit
-            support.SaveSettings();
-            Close();
+            //    }
+            //    else
+            //    {
+            //        var support = new SupportMethods();
+            //        //Save settings to settings.xml before exit
+            //        support.SaveSettings();
+            //        Close();
+
+            //    }
+                this.Close();
+            //}
+
         }
 
         private void Editor_FormClosing(object sender, FormClosingEventArgs e)
@@ -316,16 +328,23 @@ namespace RTFEditor
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     richTextBox1.SaveFile(saveFileDialog1.FileName);
+                    var support = new SupportMethods();
+                    //Save settings to settings.xml before exit
+                    support.SaveSettings();
                 }
                 else
                 {
-                    return;
+                    var support = new SupportMethods();
+                    //Save settings to settings.xml before exit
+                    support.SaveSettings();
                 }
             }
-
-            var support = new SupportMethods();
-            //Save settings to settings.xml before exit
-            support.SaveSettings();
+            else
+            {
+                var support = new SupportMethods();
+                //Save settings to settings.xml before exit
+                support.SaveSettings();
+            }
         }
         #endregion
     }
