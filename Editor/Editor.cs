@@ -47,7 +47,17 @@ namespace RTFEditor
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                richTextBox1.SaveFile(saveFileDialog1.FileName);
+                try
+                {
+                    richTextBox1.SaveFile(saveFileDialog1.FileName);
+                    this.Text = "RTFEditor - " + openFileDialog1.FileName;
+                    this.Update();
+                }
+                catch (Exception myException)
+                {
+                    MessageBox.Show(myException.Message);
+                    throw;
+                }
             }
         }
 
@@ -60,11 +70,13 @@ namespace RTFEditor
                 try
                 {
                     richTextBox1.LoadFile(openFileDialog1.FileName);
+                    this.Text = "RTFEditor - " + openFileDialog1.FileName;
+                    this.Update();
                 }
                 catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-   
+                    throw;
                 }
             }
         }

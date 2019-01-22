@@ -25,18 +25,6 @@ namespace RTFEditor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("RTFEditor")]
-        public string FormName {
-            get {
-                return ((string)(this["FormName"]));
-            }
-            set {
-                this["FormName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Arial, 13.8pt")]
         public global::System.Drawing.Font Setting {
             get {
@@ -44,6 +32,18 @@ namespace RTFEditor.Properties {
             }
             set {
                 this["Setting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("RTFEditor")]
+        public string FormName {
+            get {
+                return ((string)(this["FormName"]));
+            }
+            set {
+                this["FormName"] = value;
             }
         }
     }

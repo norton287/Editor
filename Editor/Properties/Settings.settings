@@ -2,11 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RTFEditor.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="FormName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">RTFEditor</Value>
-    </Setting>
     <Setting Name="Setting" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Arial, 13.8pt</Value>
+    </Setting>
+    <Setting Name="FormName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RTFEditor</Value>
     </Setting>
   </Settings>
 </SettingsFile>
