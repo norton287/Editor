@@ -217,11 +217,15 @@ namespace RTFEditor
                 if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                 {
                     richTextBox1.Text = "";
+                    this.Text = "RTFEditor - New Document";
+                    this.Update();
                 }
                 else if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     richTextBox1.SaveFile(saveFileDialog1.FileName);
                     richTextBox1.Text = "";
+                    this.Text = "RTFEditor - New Document";
+                    this.Update();
                 }
             }           
         }
