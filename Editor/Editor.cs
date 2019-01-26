@@ -215,10 +215,15 @@ namespace RTFEditor
             if (richTextBox1.Text.Length > 1)
             {
                 if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
-                    return;
-            }
-
-            richTextBox1.Text = "";
+                {
+                    richTextBox1.Text = "";
+                }
+                else if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    richTextBox1.SaveFile(saveFileDialog1.FileName);
+                    richTextBox1.Text = "";
+                }
+            }           
         }
 
         private void openToolStripButton_Click(object sender, EventArgs e)
@@ -230,6 +235,8 @@ namespace RTFEditor
                 try
                 {
                     richTextBox1.LoadFile(openFileDialog1.FileName);
+                    this.Text = "RTFEditor - " + openFileDialog1.FileName;
+                    this.Update();
                 }
                 catch (Exception ex)
                 {
@@ -244,6 +251,9 @@ namespace RTFEditor
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 richTextBox1.SaveFile(saveFileDialog1.FileName);
+                this.Text = "RTFEditor - " + saveFileDialog1.FileName;
+                this.Update();
+
             }
             else
             {
@@ -309,28 +319,7 @@ namespace RTFEditor
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if (richTextBox1.Text.Length > 1)
-            //{
-            //    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            //    {
-            //        richTextBox1.SaveFile(saveFileDialog1.FileName);
-            //        var support = new SupportMethods();
-            //        //Save settings to settings.xml before exit
-            //        support.SaveSettings();
-            //        Close();
-
-            //    }
-            //    else
-            //    {
-            //        var support = new SupportMethods();
-            //        //Save settings to settings.xml before exit
-            //        support.SaveSettings();
-            //        Close();
-
-            //    }
                 this.Close();
-            //}
-
         }
 
         private void Editor_FormClosing(object sender, FormClosingEventArgs e)
