@@ -4,7 +4,10 @@ Simple RTF Editor written in C#
 ![RTFEditor Jpeg](/img/RTFEditor.jpg)
 
 ## Getting Started
-I used Visual Studio Community 2017 and .NET Framework 4 to build this app. Font, Window Position, and Window Size are saved on exit.  These settings are loaded on the start of the application as well.
+I used Visual Studio Community 2017 and .NET Framework 4 to build this app. Font, fontDialog.Font, Window Position, and Window Size are saved on exit to %APPDATA%\RTFEditor\settings.xml.  These settings are loaded on the start of the application as well.
+
+You can cut, copy, and paste as well as insert images into your documents.  Font color is not selective but when set changes the color of the entire document.  This is because font color is set through the ForeColor property.
+
 ### Prerequisites
 ```
 .NET Framework 4.6.1
