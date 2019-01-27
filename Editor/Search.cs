@@ -1,30 +1,35 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace RTFEditor
 {
     public partial class Search : Form
     {
-        Editor ths;
+        private readonly Editor _ths;
 
         public Search(Editor frm)
         {
             InitializeComponent();
-            ths = frm;
+            _ths = frm;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (txtSearch.Text.Trim().Length > 0)
             {
-                int start = ths.richTextBox1.Find(txtSearch.Text);
+                int start = _ths.richTextBox1.Find(txtSearch.Text);
 
-                ths.richTextBox1.Select(start, txtSearch.Text.Length);
+                _ths.richTextBox1.Select(start, txtSearch.Text.Length);
+
+                _ths.richTextBox1.SelectionBackColor = Color.Yellow;
             }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            _ths.richTextBox1.SelectionBackColor = Color.White;
+
             this.Close();
         }
 

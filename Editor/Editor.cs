@@ -50,7 +50,7 @@ namespace RTFEditor
                 try
                 {
                     richTextBox1.SaveFile(saveFileDialog1.FileName);
-                    this.Text = "RTFEditor - " + openFileDialog1.FileName;
+                    this.Text = @"RTFEditor - " + openFileDialog1.FileName;
                     this.Update();
                 }
                 catch (Exception myException)
@@ -70,7 +70,7 @@ namespace RTFEditor
                 try
                 {
                     richTextBox1.LoadFile(openFileDialog1.FileName);
-                    this.Text = "RTFEditor - " + openFileDialog1.FileName;
+                    this.Text = @"RTFEditor - " + openFileDialog1.FileName;
                     this.Update();
                 }
                 catch(Exception ex)
@@ -217,14 +217,14 @@ namespace RTFEditor
                 if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                 {
                     richTextBox1.Text = "";
-                    this.Text = "RTFEditor - New Document";
+                    this.Text = @"RTFEditor - New Document";
                     this.Update();
                 }
                 else if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     richTextBox1.SaveFile(saveFileDialog1.FileName);
                     richTextBox1.Text = "";
-                    this.Text = "RTFEditor - New Document";
+                    this.Text = @"RTFEditor - New Document";
                     this.Update();
                 }
             }           
@@ -239,7 +239,7 @@ namespace RTFEditor
                 try
                 {
                     richTextBox1.LoadFile(openFileDialog1.FileName);
-                    this.Text = "RTFEditor - " + openFileDialog1.FileName;
+                    this.Text = @"RTFEditor - " + openFileDialog1.FileName;
                     this.Update();
                 }
                 catch (Exception ex)
@@ -255,7 +255,7 @@ namespace RTFEditor
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 richTextBox1.SaveFile(saveFileDialog1.FileName);
-                this.Text = "RTFEditor - " + saveFileDialog1.FileName;
+                this.Text = @"RTFEditor - " + saveFileDialog1.FileName;
                 this.Update();
 
             }
