@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Configuration;
@@ -13,7 +14,7 @@ namespace RTFEditor
         #region Fields
         private readonly string _workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
         private readonly string _programPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFilesX86) + @"\RTFEditor";
-        private readonly string _fileName = @"\settings.xml";
+        private readonly string _fileName = @"\settings.txt";
         #endregion
         #region Objects
         //Create Editor object on open instance of it
@@ -77,13 +78,19 @@ namespace RTFEditor
 
             BuildSettings(); //Get the form window settings and apply add them to the List
             // opening serializer on the WindowSettings object 
-            XmlSerializer mySerializer = new XmlSerializer(typeof(WindowSettings));
-            // Create a StreamWriter object and output to settings.xml in app data folder  
+            JsonSerializer mySerializer = new JsonSerializer();
+            mySerializer.NullValueHandling = NullValueHandling.Ignore;
+
+            // Create a StreamWriter object and output to settings.txt in app data folder  
             try
             {
-                StreamWriter myWriter = new StreamWriter(_workingDirectory + _fileName);
-                //Serialize settings to settings.xml
-                mySerializer.Serialize(myWriter, _windowSettings);
+                var myWriter = new StreamWriter(_workingDirectory + _fileName);
+                //Serialize settings to settings.txt
+                using (JsonWriter writer = new JsonTextWriter(myWriter))
+                {
+                    mySerializer.Serialize(writer, _windowSettings);
+                }
+
                 //Close settings.xml
                 myWriter.Close();
             }
@@ -96,14 +103,20 @@ namespace RTFEditor
         /// <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
         public void LoadSettings()
         {
-            // New instance of xml serializer on the WindowSettings object
-            XmlSerializer mySerializer = new XmlSerializer(typeof(WindowSettings));
-            // New FileStream to open and read settings.xml
+            // New instance of JSON serializer on the WindowSettings object
+            JsonSerializer mySerializer = new JsonSerializer();
+            // New FileStream to open and read settings.txt
             try
             {
-                FileStream myFileStream = new FileStream(_workingDirectory + _fileName, FileMode.Open);
-                // Call the Deserialize method and cast to the object type WindowSettings 
-                _windowSettings = (WindowSettings)mySerializer.Deserialize(myFileStream);
+                //FileStream myFileStream = new FileStream(_workingDirectory + _fileName, FileMode.Open);
+                //JsonReader reader = new JsonReader(myFileStream);
+                //// Call the Deserialize method and cast to the object type WindowSettings 
+                //mySerializer.Deserialize(myFileStream, _windowSettings);
+                StreamReader myStream = File.OpenText(_workingDirectory + _fileName);
+                WindowSettings _windowSettings = (WindowSettings) mySerializer.Deserialize(myStream, typeof(WindowSettings));
+
+                //Close the settings.txt file
+                myStream.Close();
                 //Apply settings read to the Form Controls
                 if (_ths != null)
                 {
@@ -114,10 +127,6 @@ namespace RTFEditor
                     _ths.Location = new Point(_windowSettings._windowX, _windowSettings._windowY);
                     _ths.Size = new Size(_windowSettings._windowWidth, _windowSettings._windowHeight);
                 }
-
-                //Close the settings.xml file
-                myFileStream.Close();
-
             }
             catch (FileNotFoundException myFileNotFoundException)
             {

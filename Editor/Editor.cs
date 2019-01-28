@@ -10,7 +10,7 @@ namespace RTFEditor
     public partial class Editor : Form
     {
         private readonly string _workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
-        private readonly string _fileName = @"\settings.xml";
+        private readonly string _fileName = @"\settings.txt";
 
         public Editor()
         {
