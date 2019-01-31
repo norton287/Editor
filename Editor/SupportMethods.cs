@@ -78,8 +78,10 @@ namespace RTFEditor
 
             BuildSettings(); //Get the form window settings and apply add them to the List
             // opening serializer on the WindowSettings object 
-            JsonSerializer mySerializer = new JsonSerializer();
-            mySerializer.NullValueHandling = NullValueHandling.Ignore;
+            JsonSerializer mySerializer = new JsonSerializer
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
 
             // Create a StreamWriter object and output to settings.txt in app data folder  
             try
@@ -88,6 +90,7 @@ namespace RTFEditor
                 //Serialize settings to settings.txt
                 using (JsonWriter writer = new JsonTextWriter(myWriter))
                 {
+                    writer.Formatting = Formatting.Indented;
                     mySerializer.Serialize(writer, _windowSettings);
                 }
 
@@ -108,10 +111,6 @@ namespace RTFEditor
             // New FileStream to open and read settings.txt
             try
             {
-                //FileStream myFileStream = new FileStream(_workingDirectory + _fileName, FileMode.Open);
-                //JsonReader reader = new JsonReader(myFileStream);
-                //// Call the Deserialize method and cast to the object type WindowSettings 
-                //mySerializer.Deserialize(myFileStream, _windowSettings);
                 StreamReader myStream = File.OpenText(_workingDirectory + _fileName);
                 WindowSettings _windowSettings = (WindowSettings) mySerializer.Deserialize(myStream, typeof(WindowSettings));
 
