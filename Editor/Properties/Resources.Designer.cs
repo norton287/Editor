@@ -71,6 +71,16 @@ namespace RTFEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IMG_0062 {
+            get {
+                object obj = ResourceManager.GetObject("IMG_0062", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon RTFEditor {
@@ -86,6 +96,16 @@ namespace RTFEditor.Properties {
         internal static System.Drawing.Icon RTFEditor_2 {
             get {
                 object obj = ResourceManager.GetObject("RTFEditor_2", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon RTFEditor_Logo {
+            get {
+                object obj = ResourceManager.GetObject("RTFEditor_Logo", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
