@@ -179,6 +179,12 @@
   <ItemGroup>
     <None Include="Resources\IMG_0062.PNG" />
     <None Include="Resources\RTFEditor_Logo.ico" />
+    <None Include="Resources\Print.png" />
+    <None Include="Resources\Save.png" />
+    <None Include="Resources\Search.png" />
+    <None Include="Resources\SearchAndReplace.png" />
+    <None Include="Resources\Settings.png" />
+    <None Include="Resources\Search1.png" />
     <Content Include="RTFEditor 2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

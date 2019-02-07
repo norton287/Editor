@@ -289,10 +289,8 @@
             // tsbUndo
             // 
             this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbUndo.Image = global::RTFEditor.Properties.Resources.back_arrow;
-            this.tsbUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbUndo.Name = "tsbUndo";
-            this.tsbUndo.Size = new System.Drawing.Size(24, 24);
+            this.tsbUndo.Size = new System.Drawing.Size(23, 24);
             this.tsbUndo.Text = "Undo";
             this.tsbUndo.Click += new System.EventHandler(this.tsbUndo_Click);
             // 
@@ -395,6 +393,7 @@
             // 
             // searchToolStripMenuItem
             // 
+            this.searchToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
             this.searchToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.searchToolStripMenuItem.Text = "Search";
@@ -402,6 +401,7 @@
             // 
             // searchAndReplaceToolStripMenuItem
             // 
+            this.searchAndReplaceToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.searchAndReplaceToolStripMenuItem.Name = "searchAndReplaceToolStripMenuItem";
             this.searchAndReplaceToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.searchAndReplaceToolStripMenuItem.Text = "Search and Repl;ace";
