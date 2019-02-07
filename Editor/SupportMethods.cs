@@ -21,7 +21,7 @@ namespace RTFEditor
         private readonly Editor _ths = (Editor)Application.OpenForms["Editor"];
         #endregion
         #region Collections
-        private WindowSettings _windowSettings = new WindowSettings();
+        private readonly WindowSettings _windowSettings = new WindowSettings();
         #endregion
         #region Constructors
         public SupportMethods(Editor frm)
@@ -66,7 +66,7 @@ namespace RTFEditor
                      MessageBox.Show(@"Exception {0} could not access directory", myIoException.GetType().Name);
                  }
        
-            //Temporary to remove settings.xml when changes are made.
+            //Temporary to remove settings.txt when changes are made.
             try
             {
                 File.Delete(_workingDirectory + _fileName);
@@ -86,16 +86,15 @@ namespace RTFEditor
             // Create a StreamWriter object and output to settings.txt in app data folder  
             try
             {
-                var myWriter = new StreamWriter(_workingDirectory + _fileName);
-                //Serialize settings to settings.txt
-                using (JsonWriter writer = new JsonTextWriter(myWriter))
+                using (var myWriter = new StreamWriter(_workingDirectory + _fileName))
                 {
-                    writer.Formatting = Formatting.Indented;
-                    mySerializer.Serialize(writer, _windowSettings);
+                    //Serialize settings to settings.txt
+                    using (JsonWriter writer = new JsonTextWriter(myWriter))
+                    {
+                        writer.Formatting = Formatting.Indented;
+                        mySerializer.Serialize(writer, _windowSettings);
+                    }
                 }
-
-                //Close settings.xml
-                myWriter.Close();
             }
             catch (DirectoryNotFoundException myDirectoryNotFoundException)
             {
@@ -111,20 +110,18 @@ namespace RTFEditor
             // New FileStream to open and read settings.txt
             try
             {
-                StreamReader myStream = File.OpenText(_workingDirectory + _fileName);
-                WindowSettings _windowSettings = (WindowSettings) mySerializer.Deserialize(myStream, typeof(WindowSettings));
-
-                //Close the settings.txt file
-                myStream.Close();
-                //Apply settings read to the Form Controls
-                if (_ths != null)
+                using (StreamReader myStream = File.OpenText(_workingDirectory + _fileName))
                 {
-                    _ths.fontDialog1.Font = new Font(_windowSettings._fontFamily, _windowSettings._fontSize, _windowSettings._style, _windowSettings._graphicsUnit);
-                    _ths.fontDialog1.Color = Color.FromName(_windowSettings._fontDialogColor);
-                    _ths.richTextBox1.ForeColor = Color.FromName(_windowSettings._foreColor);
-                    _ths.richTextBox1.Font = new Font(_windowSettings._fontFamily, _windowSettings._fontSize, _windowSettings._style, _windowSettings._graphicsUnit);
-                    _ths.Location = new Point(_windowSettings._windowX, _windowSettings._windowY);
-                    _ths.Size = new Size(_windowSettings._windowWidth, _windowSettings._windowHeight);
+                    WindowSettings windowSettings = (WindowSettings)mySerializer.Deserialize(myStream, typeof(WindowSettings));
+
+                    //Apply settings read to the Form Controls
+                    if (_ths == null) return;
+                    _ths.fontDialog1.Font = new Font(windowSettings._fontFamily, windowSettings._fontSize, windowSettings._style, windowSettings._graphicsUnit);
+                    _ths.fontDialog1.Color = Color.FromName(windowSettings._fontDialogColor);
+                    _ths.richTextBox1.ForeColor = Color.FromName(windowSettings._foreColor);
+                    _ths.richTextBox1.Font = new Font(windowSettings._fontFamily, windowSettings._fontSize, windowSettings._style, windowSettings._graphicsUnit);
+                    _ths.Location = new Point(windowSettings._windowX, windowSettings._windowY);
+                    _ths.Size = new Size(windowSettings._windowWidth, windowSettings._windowHeight);
                 }
             }
             catch (FileNotFoundException myFileNotFoundException)
