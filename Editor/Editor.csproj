@@ -153,12 +153,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Undo.png.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\back-arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -179,6 +173,16 @@
   <ItemGroup>
     <None Include="Resources\IMG_0062.PNG" />
     <None Include="Resources\RTFEditor_Logo.ico" />
+    <None Include="Resources\icons8-undo-16.png" />
+    <None Include="Resources\OpenFolder_16x.png" />
+    <None Include="Resources\Save_16x.png" />
+    <None Include="Resources\Print_16x.png" />
+    <None Include="Resources\Search_16x.png" />
+    <None Include="Resources\Bold_16x.png" />
+    <None Include="Resources\Italic_16x.png" />
+    <None Include="Resources\Underline_16x.png" />
+    <None Include="Resources\PrintPreview_16x.png" />
+    <None Include="Resources\Exit_16x.png" />
     <Content Include="RTFEditor 2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
