@@ -3,6 +3,13 @@ Simple RTF Editor written in C#
 
 ![RTFEditor Jpeg](/img/RTFEditor.jpg)
 
+![RTFEditor Jpeg](/img/FileMenu.png)
+
+![RTFEditor Jpeg](/img/EditMenu.png)
+
+![RTFEditor Jpeg](/img/SettingsMenu.png)
+
+
 ## Getting Started
 I used Visual Studio Community 2017 and .NET Framework 4 to build this app. Font, fontDialog.Font, Window Position, and Window Size are saved on exit to %APPDATA%\RTFEditor\settings.xml.  These settings are loaded on the start of the application as well.
 

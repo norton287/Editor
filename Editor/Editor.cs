@@ -45,19 +45,17 @@ namespace RTFEditor
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog1.ShowDialog() != DialogResult.OK) return;
+            try
             {
-                try
-                {
-                    richTextBox1.SaveFile(saveFileDialog1.FileName);
-                    this.Text = @"RTFEditor - " + openFileDialog1.FileName;
-                    this.Update();
-                }
-                catch (Exception myException)
-                {
-                    MessageBox.Show(myException.Message);
-                    throw;
-                }
+                richTextBox1.SaveFile(saveFileDialog1.FileName);
+                this.Text = @"RTFEditor - " + openFileDialog1.FileName;
+                this.Update();
+            }
+            catch (Exception myException)
+            {
+                MessageBox.Show(myException.Message);
+                throw;
             }
         }
 
@@ -65,19 +63,17 @@ namespace RTFEditor
         {
             openFileDialog1.FileName = "";
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
+            try
             {
-                try
-                {
-                    richTextBox1.LoadFile(openFileDialog1.FileName);
-                    this.Text = @"RTFEditor - " + openFileDialog1.FileName;
-                    this.Update();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    throw;
-                }
+                richTextBox1.LoadFile(openFileDialog1.FileName);
+                this.Text = @"RTFEditor - " + openFileDialog1.FileName;
+                this.Update();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
             }
         }
 
@@ -334,20 +330,20 @@ namespace RTFEditor
                 {
                     richTextBox1.SaveFile(saveFileDialog1.FileName);
                     var support = new SupportMethods();
-                    //Save settings to settings.xml before exit
+                    //Save settings to settings.txt before exit
                     support.SaveSettings();
                 }
                 else
                 {
                     var support = new SupportMethods();
-                    //Save settings to settings.xml before exit
+                    //Save settings to settings.txt before exit
                     support.SaveSettings();
                 }
             }
             else
             {
                 var support = new SupportMethods();
-                //Save settings to settings.xml before exit
+                //Save settings to settings.txt before exit
                 support.SaveSettings();
             }
         }
