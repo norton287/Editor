@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -39,7 +40,10 @@ namespace RTFEditor
             
             //Check for settings.xml in App Data folder
             if (File.Exists(_workingDirectory + _fileName))
-                support.LoadSettings(); //load saved settings from xml
+                support.LoadSettings(); //load saved settings from json
+
+            Text = @"RTFEditor - New Document";
+            Update();
         }
         #region Events
 
@@ -49,8 +53,8 @@ namespace RTFEditor
             try
             {
                 richTextBox1.SaveFile(saveFileDialog1.FileName);
-                this.Text = @"RTFEditor - " + openFileDialog1.FileName;
-                this.Update();
+                Text = @"RTFEditor - " + saveFileDialog1.FileName;
+                Update();
             }
             catch (Exception myException)
             {
@@ -67,8 +71,8 @@ namespace RTFEditor
             try
             {
                 richTextBox1.LoadFile(openFileDialog1.FileName);
-                this.Text = @"RTFEditor - " + openFileDialog1.FileName;
-                this.Update();
+                Text = @"RTFEditor - " + openFileDialog1.FileName;
+                Update();
             }
             catch(Exception ex)
             {
@@ -84,7 +88,7 @@ namespace RTFEditor
 
         }
 
-        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
             e.Graphics.DrawString(richTextBox1.Text, fontDialog1.Font, Brushes.Black, e.MarginBounds, StringFormat.GenericTypographic);
         }
@@ -111,21 +115,15 @@ namespace RTFEditor
             {
                 if (fontDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
-                else
-                {
-                    richTextBox1.Font = fontDialog1.Font;
-                    richTextBox1.ForeColor = fontDialog1.Color;
-                }
+                richTextBox1.Font = fontDialog1.Font;
+                richTextBox1.ForeColor = fontDialog1.Color;
             }
             else
             {
                 if (fontDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
-                else
-                {
-                    richTextBox1.SelectionFont = fontDialog1.Font;
-                    richTextBox1.ForeColor = fontDialog1.Color;
-                }
+                richTextBox1.SelectionFont = fontDialog1.Font;
+                richTextBox1.ForeColor = fontDialog1.Color;
             }
         }
 
@@ -193,7 +191,7 @@ namespace RTFEditor
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             //Look for words in the richtextbox
-            var words = richTextBox1.Text.Split(new char[] { ' ', ',', '.', '!', '\n', '?', ':', ';' });
+            var words = richTextBox1.Text.Split(' ', ',', '.', '!', '\n', '?', ':', ';');
             //Count words longer than or equal to one character
             var count = words.Count(word => word.Length >= 1);
             //Update the toolstripstatuslabel with the count
@@ -213,17 +211,22 @@ namespace RTFEditor
                 if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                 {
                     richTextBox1.Text = "";
-                    this.Text = @"RTFEditor - New Document";
-                    this.Update();
+                    Text = @"RTFEditor - New Document";
+                    Update();
                 }
                 else if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     richTextBox1.SaveFile(saveFileDialog1.FileName);
                     richTextBox1.Text = "";
-                    this.Text = @"RTFEditor - New Document";
-                    this.Update();
+                    Text = @"RTFEditor - New Document";
+                    Update();
                 }
-            }           
+            }
+            else
+            {
+                Text = @"RTFEditor - New Document";
+                Update();
+            }
         }
 
         private void openToolStripButton_Click(object sender, EventArgs e)
@@ -235,8 +238,8 @@ namespace RTFEditor
                 try
                 {
                     richTextBox1.LoadFile(openFileDialog1.FileName);
-                    this.Text = @"RTFEditor - " + openFileDialog1.FileName;
-                    this.Update();
+                    Text = @"RTFEditor - " + openFileDialog1.FileName;
+                    Update();
                 }
                 catch (Exception ex)
                 {
@@ -251,13 +254,12 @@ namespace RTFEditor
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 richTextBox1.SaveFile(saveFileDialog1.FileName);
-                this.Text = @"RTFEditor - " + saveFileDialog1.FileName;
-                this.Update();
+                Text = @"RTFEditor - " + saveFileDialog1.FileName;
+                Update();
 
             }
             else
             {
-                return;
             }
         }
 
@@ -319,7 +321,7 @@ namespace RTFEditor
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                this.Close();
+                Close();
         }
 
         private void Editor_FormClosing(object sender, FormClosingEventArgs e)

@@ -1,11 +1,14 @@
-﻿namespace RTFEditor
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace RTFEditor
 {
     partial class SearchAndReplace
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -111,11 +114,11 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnDone;
-        public System.Windows.Forms.TextBox txtSearch;
-        public System.Windows.Forms.TextBox txtReplace;
-        public System.Windows.Forms.Button btnSearch;
+        private Label label1;
+        private Label label2;
+        private Button btnDone;
+        public TextBox txtSearch;
+        public TextBox txtReplace;
+        public Button btnSearch;
     }
 }

@@ -30,7 +30,7 @@ namespace RTFEditor
         {
             _ths.richTextBox1.SelectionBackColor = Color.White;
 
-            this.Close();
+            Close();
         }
 
         private void Search_Load(object sender, EventArgs e)

@@ -1,11 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
-using System.Drawing.Configuration;
 using System.IO;
 using System.Windows.Forms;
-using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace RTFEditor
 {
@@ -26,7 +23,7 @@ namespace RTFEditor
         #region Constructors
         public SupportMethods(Editor frm)
         {
-            this._ths = frm;
+            _ths = frm;
         }
 
         public SupportMethods()
