@@ -30,7 +30,6 @@ namespace RTFEditor
         {
         }
         #endregion
-
         #region Methods
         private void BuildSettings()
         {
@@ -75,7 +74,7 @@ namespace RTFEditor
 
             BuildSettings(); //Get the form window settings and apply add them to the List
             // opening serializer on the WindowSettings object 
-            JsonSerializer mySerializer = new JsonSerializer
+            var mySerializer = new JsonSerializer
             {
                 NullValueHandling = NullValueHandling.Ignore
             };
@@ -103,13 +102,13 @@ namespace RTFEditor
         public void LoadSettings()
         {
             // New instance of JSON serializer on the WindowSettings object
-            JsonSerializer mySerializer = new JsonSerializer();
+            var mySerializer = new JsonSerializer();
             // New FileStream to open and read settings.txt
             try
             {
-                using (StreamReader myStream = File.OpenText(_workingDirectory + _fileName))
+                using (var myStream = File.OpenText(_workingDirectory + _fileName))
                 {
-                    WindowSettings windowSettings = (WindowSettings)mySerializer.Deserialize(myStream, typeof(WindowSettings));
+                    var windowSettings = (WindowSettings)mySerializer.Deserialize(myStream, typeof(WindowSettings));
 
                     //Apply settings read to the Form Controls
                     if (_ths == null) return;

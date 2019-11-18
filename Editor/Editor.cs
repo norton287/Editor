@@ -326,25 +326,24 @@ namespace RTFEditor
 
         private void Editor_FormClosing(object sender, FormClosingEventArgs e)
         {
+            var support = new SupportMethods();
+
             if (richTextBox1.Text.Length > 1)
             {
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     richTextBox1.SaveFile(saveFileDialog1.FileName);
-                    var support = new SupportMethods();
                     //Save settings to settings.txt before exit
                     support.SaveSettings();
                 }
                 else
                 {
-                    var support = new SupportMethods();
                     //Save settings to settings.txt before exit
                     support.SaveSettings();
                 }
             }
             else
             {
-                var support = new SupportMethods();
                 //Save settings to settings.txt before exit
                 support.SaveSettings();
             }
