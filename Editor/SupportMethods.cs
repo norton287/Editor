@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+
+using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Newtonsoft.Json;
+
+using Formatting = Newtonsoft.Json.Formatting;
 
 namespace RTFEditor
 {
-    public class SupportMethods
+	public class SupportMethods
     {
         #region Fields
         private readonly string _workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
