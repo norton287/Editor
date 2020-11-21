@@ -47,7 +47,7 @@ namespace RTFEditor
         }
         #region Events
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() != DialogResult.OK) return;
             try
@@ -63,7 +63,7 @@ namespace RTFEditor
             }
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
 
@@ -81,35 +81,35 @@ namespace RTFEditor
             }
         }
 
-        private void printPreviewPrintToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PrintPreviewPrintToolStripMenuItem_Click(object sender, EventArgs e)
         {
             printPreviewDialog1.Document = printDocument1;
             printPreviewDialog1.ShowDialog();
 
         }
 
-        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        private void PrintDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
             e.Graphics.DrawString(richTextBox1.Text, fontDialog1.Font, Brushes.Black, e.MarginBounds, StringFormat.GenericTypographic);
         }
 
-        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PrintToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (printDialog1.ShowDialog() == DialogResult.OK)
                 printDocument1.Print();
         }
 
-        private void searchAndReplaceToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SearchAndReplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new SearchAndReplace(this).Show();
         }
 
-        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SearchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new Search(this).Show();
         }
 
-        private void fontToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void FontToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             if (richTextBox1.SelectedText.Length == 0)
             {
@@ -127,7 +127,7 @@ namespace RTFEditor
             }
         }
 
-        private void boldToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BoldToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (richTextBox1.SelectionFont == null)
             {
@@ -148,7 +148,7 @@ namespace RTFEditor
             richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
         }
 
-        private void italicToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ItalicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (richTextBox1.SelectionFont == null)
             {
@@ -167,7 +167,7 @@ namespace RTFEditor
             richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, style);
         }
 
-        private void underlineToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HnderlineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (richTextBox1.SelectionFont == null)
             {
@@ -188,7 +188,7 @@ namespace RTFEditor
         }
 
         //Show a word count in the status bar
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
         {
             //Look for words in the richtextbox
             var words = richTextBox1.Text.Split(' ', ',', '.', '!', '\n', '?', ':', ';');
@@ -198,13 +198,13 @@ namespace RTFEditor
             toolStripStatusLabel1.Text = $@"Number of words: { count }";
         }
         //Capture Link clicks in the richTextBox1 object
-        private void richTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)
+        private void RichTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             //Open default browser and go to link in document
             Process.Start(e.LinkText);
         }
 
-        private void newToolStripButton_Click(object sender, EventArgs e)
+        private void NewToolStripButton_Click(object sender, EventArgs e)
         {
             if (richTextBox1.Text.Length > 1)
             {
@@ -229,7 +229,7 @@ namespace RTFEditor
             }
         }
 
-        private void openToolStripButton_Click(object sender, EventArgs e)
+        private void OpenToolStripButton_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
 
@@ -249,7 +249,7 @@ namespace RTFEditor
             }
         }
 
-        private void saveToolStripButton_Click(object sender, EventArgs e)
+        private void SaveToolStripButton_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -263,23 +263,23 @@ namespace RTFEditor
             }
         }
 
-        private void printToolStripButton_Click(object sender, EventArgs e)
+        private void PrintToolStripButton_Click(object sender, EventArgs e)
         {
             if (printDialog1.ShowDialog() == DialogResult.OK)
                 printDocument1.Print();
         }
 
-        private void cutToolStripButton_Click(object sender, EventArgs e)
+        private void CutToolStripButton_Click(object sender, EventArgs e)
         {
             richTextBox1.Cut();
         }
 
-        private void copyToolStripButton_Click(object sender, EventArgs e)
+        private void CopyToolStripButton_Click(object sender, EventArgs e)
         {
             richTextBox1.Copy();
         }
 
-        private void pasteToolStripButton_Click(object sender, EventArgs e)
+        private void PasteToolStripButton_Click(object sender, EventArgs e)
         {
             if (Clipboard.ContainsText(TextDataFormat.Rtf))
             {
@@ -291,12 +291,12 @@ namespace RTFEditor
             }
         }
 
-        private void tsbUndo_Click(object sender, EventArgs e)
+        private void TsbUndo_Click(object sender, EventArgs e)
         {
             richTextBox1.Undo();
         }
 
-        private void tsbInsertImage_Click(object sender, EventArgs e)
+        private void TsbInsertImage_Click(object sender, EventArgs e)
         {
             try
             {
@@ -319,7 +319,7 @@ namespace RTFEditor
             }
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
                 Close();
         }

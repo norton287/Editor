@@ -13,7 +13,10 @@ namespace RTFEditor
     {
         #region Fields
         private readonly string _workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RTFEditor";
-        private readonly string _programPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFilesX86) + @"\RTFEditor";
+
+        public string ProgramPath { get; } =
+	        Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFilesX86) + @"\RTFEditor";
+
         private readonly string _fileName = @"\settings.txt";
         #endregion
         #region Objects
@@ -85,15 +88,13 @@ namespace RTFEditor
             // Create a StreamWriter object and output to settings.txt in app data folder  
             try
             {
-                using (var myWriter = new StreamWriter(_workingDirectory + _fileName))
-                {
-                    //Serialize settings to settings.txt
-                    using (JsonWriter writer = new JsonTextWriter(myWriter))
-                    {
-                        writer.Formatting = Formatting.Indented;
-                        mySerializer.Serialize(writer, _windowSettings);
-                    }
-                }
+	            using var myWriter = new StreamWriter(_workingDirectory + _fileName);
+				//Serialize settings to settings.txt
+				using JsonWriter writer = new JsonTextWriter(myWriter)
+				{
+					Formatting = Formatting.Indented
+				};
+				mySerializer.Serialize(writer, _windowSettings);
             }
             catch (DirectoryNotFoundException myDirectoryNotFoundException)
             {
@@ -109,19 +110,17 @@ namespace RTFEditor
             // New FileStream to open and read settings.txt
             try
             {
-                using (var myStream = File.OpenText(_workingDirectory + _fileName))
-                {
-                    var windowSettings = (WindowSettings)mySerializer.Deserialize(myStream, typeof(WindowSettings));
+	            using var myStream = File.OpenText(_workingDirectory + _fileName);
+	            var windowSettings = (WindowSettings)mySerializer.Deserialize(myStream, typeof(WindowSettings));
 
-                    //Apply settings read to the Form Controls
-                    if (_ths == null) return;
-                    _ths.fontDialog1.Font = new Font(windowSettings._fontFamily, windowSettings._fontSize, windowSettings._style, windowSettings._graphicsUnit);
-                    _ths.fontDialog1.Color = Color.FromName(windowSettings._fontDialogColor);
-                    _ths.richTextBox1.ForeColor = Color.FromName(windowSettings._foreColor);
-                    _ths.richTextBox1.Font = new Font(windowSettings._fontFamily, windowSettings._fontSize, windowSettings._style, windowSettings._graphicsUnit);
-                    _ths.Location = new Point(windowSettings._windowX, windowSettings._windowY);
-                    _ths.Size = new Size(windowSettings._windowWidth, windowSettings._windowHeight);
-                }
+	            //Apply settings read to the Form Controls
+	            if (_ths == null) return;
+	            _ths.fontDialog1.Font = new Font(windowSettings._fontFamily, windowSettings._fontSize, windowSettings._style, windowSettings._graphicsUnit);
+	            _ths.fontDialog1.Color = Color.FromName(windowSettings._fontDialogColor);
+	            _ths.richTextBox1.ForeColor = Color.FromName(windowSettings._foreColor);
+	            _ths.richTextBox1.Font = new Font(windowSettings._fontFamily, windowSettings._fontSize, windowSettings._style, windowSettings._graphicsUnit);
+	            _ths.Location = new Point(windowSettings._windowX, windowSettings._windowY);
+	            _ths.Size = new Size(windowSettings._windowWidth, windowSettings._windowHeight);
             }
             catch (FileNotFoundException myFileNotFoundException)
             {

@@ -115,7 +115,7 @@ namespace RTFEditor
             // 
             // printDocument1
             // 
-            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument1_PrintPage);
             // 
             // printPreviewDialog1
             // 
@@ -174,8 +174,8 @@ namespace RTFEditor
             this.richTextBox1.Size = new System.Drawing.Size(1164, 670);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
-            this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox1_LinkClicked);
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.RichTextBox1_LinkClicked);
+            this.richTextBox1.TextChanged += new System.EventHandler(this.RichTextBox1_TextChanged);
             // 
             // toolStripContainer1
             // 
@@ -223,7 +223,7 @@ namespace RTFEditor
             this.newToolStripButton.Name = "newToolStripButton";
             this.newToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.newToolStripButton.Text = "&New";
-            this.newToolStripButton.Click += new System.EventHandler(this.newToolStripButton_Click);
+            this.newToolStripButton.Click += new System.EventHandler(this.NewToolStripButton_Click);
             // 
             // openToolStripButton
             // 
@@ -233,7 +233,7 @@ namespace RTFEditor
             this.openToolStripButton.Name = "openToolStripButton";
             this.openToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.openToolStripButton.Text = "&Open";
-            this.openToolStripButton.Click += new System.EventHandler(this.openToolStripButton_Click);
+            this.openToolStripButton.Click += new System.EventHandler(this.OpenToolStripButton_Click);
             // 
             // saveToolStripButton
             // 
@@ -243,7 +243,7 @@ namespace RTFEditor
             this.saveToolStripButton.Name = "saveToolStripButton";
             this.saveToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.saveToolStripButton.Text = "&Save";
-            this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
+            this.saveToolStripButton.Click += new System.EventHandler(this.SaveToolStripButton_Click);
             // 
             // printToolStripButton
             // 
@@ -253,7 +253,7 @@ namespace RTFEditor
             this.printToolStripButton.Name = "printToolStripButton";
             this.printToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.printToolStripButton.Text = "&Print";
-            this.printToolStripButton.Click += new System.EventHandler(this.printToolStripButton_Click);
+            this.printToolStripButton.Click += new System.EventHandler(this.PrintToolStripButton_Click);
             // 
             // toolStripSeparator
             // 
@@ -268,7 +268,7 @@ namespace RTFEditor
             this.cutToolStripButton.Name = "cutToolStripButton";
             this.cutToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.cutToolStripButton.Text = "C&ut";
-            this.cutToolStripButton.Click += new System.EventHandler(this.cutToolStripButton_Click);
+            this.cutToolStripButton.Click += new System.EventHandler(this.CutToolStripButton_Click);
             // 
             // copyToolStripButton
             // 
@@ -278,7 +278,7 @@ namespace RTFEditor
             this.copyToolStripButton.Name = "copyToolStripButton";
             this.copyToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.copyToolStripButton.Text = "&Copy";
-            this.copyToolStripButton.Click += new System.EventHandler(this.copyToolStripButton_Click);
+            this.copyToolStripButton.Click += new System.EventHandler(this.CopyToolStripButton_Click);
             // 
             // pasteToolStripButton
             // 
@@ -288,7 +288,7 @@ namespace RTFEditor
             this.pasteToolStripButton.Name = "pasteToolStripButton";
             this.pasteToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.pasteToolStripButton.Text = "&Paste";
-            this.pasteToolStripButton.Click += new System.EventHandler(this.pasteToolStripButton_Click);
+            this.pasteToolStripButton.Click += new System.EventHandler(this.PasteToolStripButton_Click);
             // 
             // tsbUndo
             // 
@@ -297,7 +297,7 @@ namespace RTFEditor
             this.tsbUndo.Name = "tsbUndo";
             this.tsbUndo.Size = new System.Drawing.Size(24, 24);
             this.tsbUndo.Text = "Undo";
-            this.tsbUndo.Click += new System.EventHandler(this.tsbUndo_Click);
+            this.tsbUndo.Click += new System.EventHandler(this.TsbUndo_Click);
             // 
             // tsbInsertImage
             // 
@@ -307,7 +307,7 @@ namespace RTFEditor
             this.tsbInsertImage.Name = "tsbInsertImage";
             this.tsbInsertImage.Size = new System.Drawing.Size(24, 24);
             this.tsbInsertImage.Text = "Insert Image";
-            this.tsbInsertImage.Click += new System.EventHandler(this.tsbInsertImage_Click);
+            this.tsbInsertImage.Click += new System.EventHandler(this.TsbInsertImage_Click);
             // 
             // toolStripSeparator1
             // 
@@ -345,7 +345,7 @@ namespace RTFEditor
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -354,7 +354,7 @@ namespace RTFEditor
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -367,7 +367,7 @@ namespace RTFEditor
             this.printPreviewPrintToolStripMenuItem.Name = "printPreviewPrintToolStripMenuItem";
             this.printPreviewPrintToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.printPreviewPrintToolStripMenuItem.Text = "Print Preview";
-            this.printPreviewPrintToolStripMenuItem.Click += new System.EventHandler(this.printPreviewPrintToolStripMenuItem_Click);
+            this.printPreviewPrintToolStripMenuItem.Click += new System.EventHandler(this.PrintPreviewPrintToolStripMenuItem_Click);
             // 
             // printToolStripMenuItem
             // 
@@ -376,7 +376,7 @@ namespace RTFEditor
             this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.printToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.printToolStripMenuItem.Text = "Print";
-            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.PrintToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -390,7 +390,7 @@ namespace RTFEditor
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -407,14 +407,14 @@ namespace RTFEditor
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
             this.searchToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
             this.searchToolStripMenuItem.Text = "Search";
-            this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
+            this.searchToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
             // searchAndReplaceToolStripMenuItem
             // 
             this.searchAndReplaceToolStripMenuItem.Name = "searchAndReplaceToolStripMenuItem";
             this.searchAndReplaceToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
             this.searchAndReplaceToolStripMenuItem.Text = "Search and Repl;ace";
-            this.searchAndReplaceToolStripMenuItem.Click += new System.EventHandler(this.searchAndReplaceToolStripMenuItem_Click);
+            this.searchAndReplaceToolStripMenuItem.Click += new System.EventHandler(this.SearchAndReplaceToolStripMenuItem_Click);
             // 
             // fontToolStripMenuItem1
             // 
@@ -434,7 +434,7 @@ namespace RTFEditor
             this.fontToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.fontToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.fontToolStripMenuItem.Text = "Font";
-            this.fontToolStripMenuItem.Click += new System.EventHandler(this.fontToolStripMenuItem_Click_1);
+            this.fontToolStripMenuItem.Click += new System.EventHandler(this.FontToolStripMenuItem_Click_1);
             // 
             // toolStripSeparator4
             // 
@@ -448,7 +448,7 @@ namespace RTFEditor
             this.boldToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
             this.boldToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.boldToolStripMenuItem.Text = "Bold";
-            this.boldToolStripMenuItem.Click += new System.EventHandler(this.boldToolStripMenuItem_Click);
+            this.boldToolStripMenuItem.Click += new System.EventHandler(this.BoldToolStripMenuItem_Click);
             // 
             // italicToolStripMenuItem
             // 
@@ -457,7 +457,7 @@ namespace RTFEditor
             this.italicToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
             this.italicToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.italicToolStripMenuItem.Text = "Italic";
-            this.italicToolStripMenuItem.Click += new System.EventHandler(this.italicToolStripMenuItem_Click);
+            this.italicToolStripMenuItem.Click += new System.EventHandler(this.ItalicToolStripMenuItem_Click);
             // 
             // underlineToolStripMenuItem
             // 
@@ -466,7 +466,7 @@ namespace RTFEditor
             this.underlineToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.underlineToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.underlineToolStripMenuItem.Text = "Underline";
-            this.underlineToolStripMenuItem.Click += new System.EventHandler(this.underlineToolStripMenuItem_Click);
+            this.underlineToolStripMenuItem.Click += new System.EventHandler(this.HnderlineToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
