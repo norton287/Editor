@@ -17,14 +17,14 @@ You can cut, copy, and paste as well as insert images into your documents.  Font
 
 ### Prerequisites
 ```
-.NET Framework 4.6.1
+.NET Framework 5 and C# 9
 ```
 ### Installing
 ```
 Run Setup.exe and then launch the app from the shortcut on your desktop
 ```
 ## Built With
-[VS Community 2017](https://visualstudio.microsoft.com/downloads/) - The build software
+[VS Enterprise 2019](https://visualstudio.microsoft.com/downloads/) - The build software
 ## Versioning
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/norton287/Editor/tags).
 
